@@ -1,0 +1,53 @@
+= Cloud Foundry for Developers
+
+== Maintainer
+
+* Mark Heckler
+* mailto:mark@thehecklers.com[mark@thehecklers.com]
+* https://twitter.com/MkHeck[@mkheck on Twitter]
+
+== Purpose
+
+This repository accompanies my presentation __Cloud Foundry for Developers: A quick dive into cloud-agnostic essentials for production-obsessed devs__.
+
+== Contents
+
+* This document (README.adoc)
+* A Spring Boot-based project *(quote-service)* for a random quote-providing backing service
+* A Spring Boot-based project *(edge-service)* for an edge service that consumes the quote service's _/random_ endpoint 
+* A _docker_ directory with two subdirectories *(edge & quote)* containing Dockerfiles and a _/jar_ directory under each with the applicable deployable artifact (Java jar file)
+
+== Demo steps
+
+. Discuss quote-service, run, test locally
+. Discuss edge-service, run, test locally
+. Examine manifest.yml files
+. Build quote-service, cf push, test endpoints
+. Build edge-service, cf push, test endpoint
+. cf d both
+. Discuss Dockerfiles, docker images | grep cf4devs
+. cf push <edge|quote>-service-cf4devs -o hecklerm/<edge|quote>-service-cf4devs -m 1G
+. Test endpoints
+. Scaling, cf logs
+. Modify quote-service with 
+.. pom.xml: comment h2, uncomment mysql-connector-java dependencies
+.. application.properties: uncomment
+... spring.jpa.hibernate.ddl-auto=create-drop
+... spring.datasource.driverClassName=com.mysql.jdbc.Driver
+. Rebuild quote-service using -Dmaven.test.skip=true
+. cf d quote-service-cf4devs, cf push
+.. cf cs p.mysql db-small heckler_mysql
+.. cf bs quote-service-cf4devs heckler_mysql
+. cf restage quote-service-cf4devs
+. Test endpoints
+
+== Additional notes
+
+Feel free to clone the repo and play around with things, and please star the repo & follow me on Twitter (link at top) to be notified of updates. 
+
+Feedback welcome.
+
+== Accompanying presentation
+
+https://speakerdeck.com/something_something[Accompanying presentation on Speakerdeck]
+
