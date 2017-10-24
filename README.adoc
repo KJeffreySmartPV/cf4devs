@@ -49,5 +49,5 @@ Feedback welcome.
 
 == Accompanying presentation
 
-https://speakerdeck.com/something_something[Accompanying presentation on Speakerdeck]
+https://speakerdeck.com/mkheck/cloud-foundry-for-developers-a-quick-dive-into-cloud-agnostic-essentials-for-production-obsessed-devs[Accompanying presentation on Speakerdeck]
 
