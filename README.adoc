@@ -29,15 +29,15 @@ This repository accompanies my presentation __Cloud Foundry for Developers: A qu
 . cf push <edge|quote>-service-cf4devs -o hecklerm/<edge|quote>-service-cf4devs -m 1G
 . Test endpoints
 . Scaling, cf logs
-. Modify quote-service with 
-.. pom.xml: comment h2, uncomment mysql-connector-java dependencies
-. Rebuild quote-service using -Dmaven.test.skip=true
 . For MySQL backing datastore
-.. App setup
+.. Modify quote-service with 
+... pom.xml: comment h2, uncomment mysql-connector-java dependencies
+... Rebuild quote-service using -Dmaven.test.skip=true
+.. CF app setup
 ... cf d quote-service-cf4devs
 ... cf push
 ... cf se quote-service-cf4devs SPRING_PROFILES_ACTIVE mysql
-.. DB service setup
+.. CF database service setup
 ... cf cs p.mysql db-small heckler_mysql
 ... cf bs quote-service-cf4devs heckler_mysql
 .. cf restage quote-service-cf4devs
