@@ -35,12 +35,12 @@ This repository accompanies my presentation __Cloud Foundry for Developers: A qu
 ... Rebuild quote-service using -Dmaven.test.skip=true
 .. CF app setup
 ... cf d quote-service-cf4devs
-... cf push
+... cf push --no-start
 ... cf se quote-service-cf4devs SPRING_PROFILES_ACTIVE mysql
 .. CF database service setup
 ... cf cs p.mysql db-small heckler_mysql
 ... cf bs quote-service-cf4devs heckler_mysql
-.. cf restage quote-service-cf4devs
+.. cf restart quote-service-cf4devs
 . Test endpoints
 
 == Additional notes
