@@ -1,7 +1,13 @@
 ---
   applications:
-  - name: edge-service-cf4devs
+  - buildpack: java_buildpack_offline
+    instances: 1
+    memory: 750MB
+    name: edge-cf4devs-kjs
     path: target/edge-service-0.0.1-SNAPSHOT.jar
-    memory: 1G
+    random-route: false
+    services: 
+      - quote-service
+      - cf4devs-newrelic 
     env:
-      QUOTE_SERVICE: https://quote-service-cf4devs.pcfbeta.io/random
+      QUOTESERVICE_URL: https://quotes-cf4devs-kjs.apps.pcfone.io

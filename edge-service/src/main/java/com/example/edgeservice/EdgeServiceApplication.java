@@ -29,7 +29,7 @@ public class EdgeServiceApplication {
 class QuoteController {
     private final RestOperations restOperations;
 
-    @Value("${quote_service:http://localhost:8088/random}")
+    @Value("${vcap.services.quote-service.credentials.url}")
     private String quoteURI;
 
     QuoteController(RestOperations restOperations) {
@@ -38,15 +38,13 @@ class QuoteController {
 
     @GetMapping("/quote")
     public Quote getRandomQuote() {
-        return this.restOperations.getForObject(quoteURI, Quote.class);
+        return this.restOperations.getForObject(quoteURI+"/random", Quote.class);
     }
 }
 
 @Data
 @NoArgsConstructor
-@RequiredArgsConstructor
 class Quote {
-    private Long id;
-    @NonNull
-    private String text, source;
+    public Long id;
+    public String text, source;
 }
